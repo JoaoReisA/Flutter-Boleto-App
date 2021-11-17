@@ -1,4 +1,5 @@
 import 'package:app/shared/auth/auth_controller.dart';
+import 'package:app/shared/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -12,7 +13,8 @@ class LoginController {
     );
     try {
       final response = await _googleSignIn.signIn();
-      authController.setUser(response, context);
+      final user = UserModel(name: response!.displayName!,photoURL: response.photoUrl);
+      authController.setUser(user, context);
       print(response);
     } catch (error) {
       authController.setUser(null, context);
