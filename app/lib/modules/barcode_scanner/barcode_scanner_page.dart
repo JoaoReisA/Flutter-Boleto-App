@@ -21,7 +21,7 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
   void initState() {
     controller.getAvailableCameras();
     controller.statusNotifier.addListener(() {
-      if(controller.status.hasBarcode){
+      if (controller.status.hasBarcode) {
         Navigator.pushReplacementNamed(context, "/insert_boleto");
       }
     });
@@ -48,7 +48,7 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
             builder: (_, status, __) {
               if (status.showCamera) {
                 return Container(
-                  child: status.cameraController!.buildPreview(),
+                  child: controller.cameraController!.buildPreview(),
                 );
               } else {
                 return Container();
@@ -89,7 +89,9 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
               bottomNavigationBar: SetLabelButtons(
                 primaryLabel: "Inserir código do bolero",
                 secondaryLabel: "Adicionar da galeria",
-                primaryOnPressed: () {},
+                primaryOnPressed: () {
+                  Navigator.pushReplacementNamed(context, "/insert_boleto");
+                },
                 secondaryOnPressed: () {},
               ),
             ),
@@ -101,10 +103,12 @@ class _BarCodeScannerPageState extends State<BarCodeScannerPage> {
                 return BottomSheetWidget(
                   primaryLabel: "Escanear novamente",
                   primaryOnPressed: () {
-                    controller.getAvailableCameras();
+                    controller.scanWithCamera();
                   },
                   secondaryLabel: "Digitar código",
-                  secondaryOnPressed: () {},
+                  secondaryOnPressed: () {
+                    Navigator.pushReplacementNamed(context, "/insert_boleto");
+                  },
                   title: "Não foi possível identificar um código de barras.",
                   subTitle:
                       "Tente escanear novamente ou digite o código do seu boleto.",

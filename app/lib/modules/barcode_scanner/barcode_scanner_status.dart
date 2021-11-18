@@ -5,28 +5,29 @@ class BarCodeScannerStatus {
   final bool isCameraAvailable;
   final String error;
   final String barcode;
-
-  CameraController? cameraController;
+  final bool sttopScanner;
 
   BarCodeScannerStatus({
     this.isCameraAvailable = false,
     this.error = "",
     this.barcode = "",
-    this.cameraController,
+    this.sttopScanner = false
   });
 
-  factory BarCodeScannerStatus.available(CameraController controller) =>
+  factory BarCodeScannerStatus.available() =>
       BarCodeScannerStatus(
         isCameraAvailable: true,
-        cameraController: controller,
+        sttopScanner: false,
       );
 
   factory BarCodeScannerStatus.error(String error) => BarCodeScannerStatus(
         error: error,
+        sttopScanner: true,
       );
 
   factory BarCodeScannerStatus.barcode(String barcode) => BarCodeScannerStatus(
         barcode: barcode,
+        sttopScanner: true
       );
 
   bool get showCamera => isCameraAvailable && error.isEmpty;
