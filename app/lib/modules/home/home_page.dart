@@ -1,15 +1,15 @@
-import 'package:app/modules/home/home_controller.dart';
-import 'package:app/shared/models/boleto_model.dart';
-import 'package:app/shared/themes/app_colors.dart';
-import 'package:app/shared/themes/app_text_styles.dart';
-import 'package:app/shared/widgets/boleto_list/boleto_list_widget.dart';
-import 'package:app/shared/widgets/boleto_tile/boleto_tile_widget.dart';
-import 'package:app/shared/widgets/extract/extract_page.dart';
-import 'package:app/shared/widgets/meus_boletos/meus_boletos_page.dart';
+import 'package:app/shared/models/user_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/themes/app_colors.dart';
+import '../../shared/themes/app_text_styles.dart';
+import '../../shared/widgets/extract/extract_page.dart';
+import '../../shared/widgets/meus_boletos/meus_boletos_page.dart';
+import 'home_controller.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final UserModel user;
+  const HomePage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyles.titleRegular,
                       children: [
                         TextSpan(
-                          text: "João",
+                          text: "${widget.user.name}",
                           style: TextStyles.titleBoldBackground,
                         )
                       ]),
@@ -51,7 +51,10 @@ class _HomePageState extends State<HomePage> {
                   width: 48,
                   decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(5)),
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(image: NetworkImage(widget.user.photoURL!))
+                      ),
+                      
                 ),
               ),
             )),
