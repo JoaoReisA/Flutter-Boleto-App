@@ -18,13 +18,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final homeController = HomeController();
   final pages = [
-    MeusBoletosPage(),
-    ExtractPage(),
+    MeusBoletosPage(
+      key: UniqueKey(),
+    ),
+    ExtractPage(
+      key: UniqueKey(),
+    ),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[homeController.currentPage],
+      body: [
+        MeusBoletosPage(
+          key: UniqueKey(),
+        ),
+        ExtractPage(
+          key: UniqueKey(),
+        ),
+      ][homeController.currentPage],
       appBar: PreferredSize(
         child: Container(
             height: 152,
@@ -52,9 +63,8 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(5),
-                      image: DecorationImage(image: NetworkImage(widget.user.photoURL!))
-                      ),
-                      
+                      image: DecorationImage(
+                          image: NetworkImage(widget.user.photoURL!))),
                 ),
               ),
             )),
@@ -83,8 +93,9 @@ class _HomePageState extends State<HomePage> {
                   color: AppColors.primary,
                   borderRadius: BorderRadius.circular(8)),
               child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/barcode_scanner");
+                onPressed: () async {
+                  await Navigator.pushNamed(context, "/barcode_scanner");
+                  setState(() {});
                 },
                 icon: const Icon(
                   Icons.add_box_outlined,
