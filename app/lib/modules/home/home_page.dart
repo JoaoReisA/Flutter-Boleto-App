@@ -1,6 +1,11 @@
 import 'package:app/modules/home/home_controller.dart';
+import 'package:app/shared/models/boleto_model.dart';
 import 'package:app/shared/themes/app_colors.dart';
 import 'package:app/shared/themes/app_text_styles.dart';
+import 'package:app/shared/widgets/boleto_list/boleto_list_widget.dart';
+import 'package:app/shared/widgets/boleto_tile/boleto_tile_widget.dart';
+import 'package:app/shared/widgets/extract/extract_page.dart';
+import 'package:app/shared/widgets/meus_boletos/meus_boletos_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,12 +18,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final homeController = HomeController();
   final pages = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.blue,
-    ),
+    MeusBoletosPage(),
+    ExtractPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,9 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               icon: const Icon(Icons.home),
-              color: AppColors.primary,
+              color: homeController.currentPage == 0
+                  ? AppColors.primary
+                  : AppColors.body,
             ),
             Container(
               width: 56,
@@ -93,7 +96,9 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               icon: const Icon(Icons.description_outlined),
-              color: AppColors.body,
+              color: homeController.currentPage == 1
+                  ? AppColors.primary
+                  : AppColors.body,
             ),
           ],
         ),

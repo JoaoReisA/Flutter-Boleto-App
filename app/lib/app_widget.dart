@@ -24,7 +24,7 @@ class AppWidget extends StatelessWidget {
         primarySwatch: Colors.orange,
         primaryColor: AppColors.primary,
       ),
-      initialRoute: '/insert_boleto',
+      initialRoute: '/splash',
       routes: {
         "/splash" : (context) => const SplashPage(),
         "/home" : (context) => const HomePage(),
