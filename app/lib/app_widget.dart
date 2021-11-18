@@ -1,4 +1,5 @@
 import 'package:app/modules/barcode_scanner/barcode_scanner_page.dart';
+import 'package:app/modules/insert_boleto/insert_boleto_page.dart';
 import 'package:app/modules/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,6 +30,7 @@ class AppWidget extends StatelessWidget {
         "/home" : (context) => const HomePage(),
         "/login" : (context) => const LoginPage(),
         "/barcode_scanner" : (context) => const BarCodeScannerPage(), 
+        "/insert_boleto" : (context) => const InsertBoletoPage(),
        },
     );
   }
