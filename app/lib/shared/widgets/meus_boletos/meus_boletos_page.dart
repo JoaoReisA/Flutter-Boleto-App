@@ -1,3 +1,4 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:app/shared/models/boleto_model.dart';
 import 'package:app/shared/themes/app_colors.dart';
 import 'package:app/shared/themes/app_text_styles.dart';
@@ -35,7 +36,9 @@ class _MeusBoletosPageState extends State<MeusBoletosPage> {
                   child: ValueListenableBuilder<List<BoletoModel>>(
                     valueListenable: controller.boletosNotifier,
                     builder: (_,boletos,__) {
-                      return BoletoInfoWidget(size: boletos.length);
+                      return AnimatedCard(
+                        direction: AnimatedCardDirection.top,
+                        child: BoletoInfoWidget(size: boletos.length));
                     }
                   ),
                 ),
